@@ -15,7 +15,6 @@
             android:id="@+id/item_news_recycler_image_iv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:alpha="0.9"
             android:scaleType="fitXY"
             android:src="@drawable/ic_launcher_background" />
 

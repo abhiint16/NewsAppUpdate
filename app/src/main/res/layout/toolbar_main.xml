@@ -31,6 +31,7 @@
             android:id="@+id/fragment_news_toolbar_search"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            style="@style/SearchViewStyle"
             android:layout_gravity="end"
             android:layout_toLeftOf="@+id/fragment_news_toolbar_hamburger"
             app:queryHint="type min 3 characters ..."

@@ -12,5 +12,6 @@ import abhishekint.com.newsappupdate.app.MainActivity.NewsFragment.PresentationM
 public interface ViewLayer {
     void getAllTopName(List<NewsModel> newsModels);
     void getAllSourcesName(List<SourceModel> sourceModels);
+    void notifyExperiment();
     void setIndiaNews();
 }

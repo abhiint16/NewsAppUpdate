@@ -1,4 +1,4 @@
-package abhishekint.com.newsappupdate.modules;
+package abhishekint.com.newsappupdate.modules.unused_modules;
 
 import dagger.Module;
 

@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
     public void launchFragmentWIthoutSaving(Fragment fragment) {
         fragmentManager.beginTransaction()
                 .add(R.id.main_frame_layout, fragment)
+                .addToBackStack("")
                 .commit();
     }
 

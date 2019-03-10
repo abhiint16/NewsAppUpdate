@@ -80,7 +80,7 @@ public class IndiaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
-    private void loadMore() {
+    private void  loadMore() {
         newsPresenter.getIndiaNews(newsModel,this,newsModel.getNameId(),page+1,pageSize);
         this.page=page+1;
     }

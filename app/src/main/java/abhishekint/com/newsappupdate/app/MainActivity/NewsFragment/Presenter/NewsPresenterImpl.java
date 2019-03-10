@@ -100,7 +100,7 @@ public class NewsPresenterImpl implements NewsPresenter{
 
     @Override
     public void getIndiaNews(final NewsModel newsModel, final ViewHolderLayer viewHolderLayer,String nameId,int page,int pageSize) {
-            newsApiHit.loadNewsDataFromApi(page,pageSize,nameId)
+            newsApiHit.loadNewsDataFromApi(page,pageSize,nameId,newsModel)
                     .subscribeOn(appSchedulerProvider.io())
                     .observeOn(appSchedulerProvider.ui())
                     .subscribe(new Observer<NewsModel>() {
@@ -112,14 +112,6 @@ public class NewsPresenterImpl implements NewsPresenter{
                         @Override
                         public void onNext(NewsModel countryTopHeadNews) {
                             //newsModel.setArticles(countryTopHeadNews.getArticles());
-                            if (newsModel.getArticles()==null)
-                            {
-                                newsModel.setArticles(countryTopHeadNews.getArticles());
-                            }
-                            else
-                            {
-                                newsModel.getArticles().addAll(countryTopHeadNews.getArticles());
-                            }
                             viewHolderLayer.setIndiaItem();
                         }
 

@@ -2,11 +2,14 @@ package abhishekint.com.newsappupdate.app.MainActivity.NewsFragment.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -95,6 +98,8 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         ((NewsAdapterViewHolder)holder).recyclerView.setAdapter(indiaAdapter);*/
     }
 
+
+
     @Override
     public int getItemCount() {
         Log.e("chck for cunt","check for count"+newsModels.size());
@@ -125,6 +130,11 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     }
 
     @Override
+    public void notifyExperiment() {
+        notifyItemMoved(10,12);
+    }
+
+    @Override
     public void setIndiaNews() {
 
     }
@@ -133,10 +143,18 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     {
         public RecyclerView recyclerView;
         public TextView textView;
+        Button aa;
         public NewsAdapterViewHolder(View itemView) {
             super(itemView);
             recyclerView=(RecyclerView)itemView.findViewById(R.id.item_news_genre_recyclerview);
             textView=(TextView)itemView.findViewById(R.id.fragment_fashion_new_title);
+            aa=(Button)itemView.findViewById(R.id.aa);
+            aa.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    notifyExperiment();
+                }
+            });
         }
 
         /*@Override

@@ -7,6 +7,9 @@ import abhishekint.com.newsappupdate.app.MainActivity.NewsFragment.PresentationM
 import abhishekint.com.newsappupdate.app.MainActivity.NewsFragment.PresentationModel.NewsModel;
 import abhishekint.com.newsappupdate.app.MainActivity.NewsFragment.PresentationModel.SourceModel;
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 
 /**
  * Created by abhishek on 19-03-2018.
@@ -89,10 +92,37 @@ public class NewsApiHit {
     }
 
 
-    public Observable<NewsModel> loadNewsDataFromApi(int page, int pageSize,String country) {
+    public Observable<NewsModel> loadNewsDataFromApi(int page, int pageSize, String country, final NewsModel newsModel1) {
         return newsApiClient.getCountryTopHead(country,pageSize,page, api_key)
+                .doOnNext(a(newsModel1))
+                /*.flatMap(b());*/
                 /*.filter(filterForNull())*/;
        // return  Observable.just("abhi","aakash","patta","vinay","shalu","rahul");
+    }
+
+    /*private Function<? super NewsModel,? extends ObservableSource<? extends NewsModel>> b() {
+        return new Function<NewsModel, ObservableSource<? extends NewsModel>>() {
+            @Override
+            public ObservableSource<? extends NewsModel> apply(NewsModel newsModel) throws Exception {
+                return null;
+            }
+        };
+    }*/
+
+    private Consumer<? super NewsModel> a(final NewsModel newsModel1) {
+        return new Consumer<NewsModel>() {
+            @Override
+            public void accept(NewsModel newsModel) throws Exception {
+                if (newsModel.getArticles()==null)
+                {
+                    newsModel1.setArticles(newsModel.getArticles());
+                }
+                else
+                {
+                    newsModel1.getArticles().addAll(newsModel.getArticles());
+                }
+            }
+        };
     }
 
     public Observable<SourceModel> loadSourcesWithCategory(String category) {

@@ -27,12 +27,12 @@ public class MainPresenterImpl implements MainPresenter{
     public void SearchButtonClick(final Fragment fragment, String text,String type) {
         if (text.length()>=3)
         {
-            newsApiHit.loadSearchDataFromApi(text)
-                    .subscribeOn(appSchedulerProvider.io())
+            newsApiHit.loadSearchDataFromApi(text)               //here we can save this connection between the observer and
+                    .subscribeOn(appSchedulerProvider.io())      //Observable to a DisposableObserver just to unconnect lateron.
                     .observeOn(appSchedulerProvider.ui())
-                    .subscribe(new Observer<EverythingModel>() {
-                        @Override
-                        public void onSubscribe(Disposable d) {
+                    .subscribe(new Observer<EverythingModel>() {     //and if we have more than one such connection(hence more than
+                        @Override                                    //one DisposableOberver) then we can just store them all in
+                        public void onSubscribe(Disposable d) {    //one CompositeDisposable just to unconnect at once.
                         }
 
                         @Override

@@ -2,10 +2,9 @@ package abhishekint.com.newsappupdate;
 
 import android.app.Application;
 
-import abhishekint.com.newsappupdate.data_manager.DaggerDataManagerInterface;
-import abhishekint.com.newsappupdate.data_manager.DataManagerInterface;
+import abhishekint.com.newsappupdate.Component.ComponentInterface;
+import abhishekint.com.newsappupdate.Component.DaggerComponentInterface;
 import abhishekint.com.newsappupdate.modules.ApplicationContextModule;
-import abhishekint.com.newsappupdate.utils.TimberDubug;
 import abhishekint.com.newsappupdate.utils.TimberRelease;
 import timber.log.Timber;
 
@@ -15,11 +14,11 @@ import timber.log.Timber;
 
 public class NewsApplication extends Application {
 
-    DataManagerInterface dataManagerInterface;
+    ComponentInterface componentInterface;
     @Override
     public void onCreate() {
         super.onCreate();
-        dataManagerInterface= DaggerDataManagerInterface.builder()
+        componentInterface = DaggerComponentInterface.builder()
                 .applicationContextModule(new ApplicationContextModule(this)).build();
         if (BuildConfig.DEBUG)
             Timber.plant(new Timber.DebugTree());
@@ -27,7 +26,7 @@ public class NewsApplication extends Application {
             Timber.plant(new TimberRelease());
     }
 
-    public DataManagerInterface getNewsAppComponent() {
-        return dataManagerInterface;
+    public ComponentInterface getNewsAppComponent() {
+        return componentInterface;
     }
 }

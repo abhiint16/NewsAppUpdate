@@ -38,6 +38,7 @@ public class SearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         ((SearchViewHolder)holder).item_search_recycler_title_tv.setText(everythingModel.getArticles().get(position).getTitle());
         ((SearchViewHolder)holder).item_search_recycler_source_tv.setText(everythingModel.getArticles().get(position).getSource().getName());
         Glide.with(context).load(everythingModel.getArticles().get(position).getUrlToImage())
+                .thumbnail(Glide.with(context).load(R.drawable.default_news_img))
                 .into(((SearchViewHolder)holder).item_search_recycler_image_iv);
     }
 
